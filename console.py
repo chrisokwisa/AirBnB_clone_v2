@@ -51,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
         if not ('.' in line and '(' in line and ')' in line):
             return line
 
-        try:  # parse line left to right
+        try:  # parse the line left to right
             pline = line[:]  # parsed line
 
             # isolate <class name>
