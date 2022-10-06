@@ -9,10 +9,11 @@ from datetime import datetime
 from fabric.api import env, local, put, run, runs_once
 
 
-env.hosts = ['34.138.32.248', '3.226.74.205']
+env.hosts = ['44.200.74.227', '44.192.253.142']
+env.user = "ubuntu"
 
 
-def do_deploy(archive_path):
+def do_pack():
     """Distributes an archive to a web server.
     Args:
         archive_path (str): The path of the archive to distribute.
@@ -59,6 +60,8 @@ def do_deploy(archive_path):
         run("rm -rf /tmp/{}".format(file_name))
         run("mv {}web_static/* {}".format(folder_path, folder_path))
         run("rm -rf {}web_static".format(folder_path))
+        run("sudo mkdir -p /data/web_static/releases/test/")
+        run("echo 'Hello World' > /data/web_static/releases/test/index.html")
         run("rm -rf /data/web_static/current")
         run("ln -s {} /data/web_static/current".format(folder_path))
         print('New version deployed!')
@@ -66,3 +69,5 @@ def do_deploy(archive_path):
     except Exception:
         success = False
     return success
+def deploy():
+    do_deploy(do_pack())
