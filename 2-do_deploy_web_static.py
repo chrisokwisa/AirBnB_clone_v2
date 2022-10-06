@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-'''
-fabric script to distribute an archive to web servers
-----NEEDS TO REVISIT SCRIPT
-'''
+"""Generates a .tgz"""
 
 import os
 from datetime import datetime
